@@ -1,0 +1,30 @@
+<!-- filepath: c:\Users\vital\skillfactory\Messenger_Project\messenger\templates\room.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room: {{ room.title }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ room.title }}</h1>
+        <ul id="chat-log">
+            {% for message in room.message_set.all %}
+                <li>{{ message.user.username }}: {{ message.text }}</li>
+            {% empty %}
+                <li>No messages found.</li>
+            {% endfor %}
+        </ul>
+        <form id="chat-form">
+            {% csrf_token %}
+            <input id="chat-message-input" type="text" name="message" placeholder="Type a message...">
+            <input id="group-id" type="hidden" value="{{ room.id }}"> <!-- Добавьте этот элемент -->
+            <button id="chat-message-submit" type="button">Send</button>
+        </form>
+        <div id="room-name" style="display: none;">{{ room.id }}</div>
+    </div>
+</body>
+</html>
