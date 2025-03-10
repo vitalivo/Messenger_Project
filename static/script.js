@@ -1,4 +1,4 @@
-const websocket = new WebSocket('ws://localhost:8000/ws/');
+const websocket = new WebSocket('ws://localhost:8001/ws/');
 
 websocket.onopen = () => {
   console.log('Connected to WebSocket server');
@@ -18,3 +18,6 @@ websocket.onmessage = (event) => {
 websocket.onclose = () => {
   console.log('Disconnected from WebSocket server');
 };
+
+
+
